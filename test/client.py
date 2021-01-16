@@ -13,39 +13,29 @@ class IlMioThread (threading.Thread):
       self.nome = nome
       self.durata = durata
    def run(self):
-     #  print ("Thread '" + self.name + "' avviato")
-      # Acquisizione del lock
       time.sleep(5)
       while True:
         sock.sendall('SUB TSLA\r\n'.encode())
-        #time.sleep(1)
         sock.sendall('UNS TSLA\r\n'.encode())
-       # time.sleep(1)
-      #   print ("Thread '" + self.name + "' terminato")
-      # Rilascio del lock
-      #  threadLock.release()
 
 # Creazione dei thread
 thread1 = IlMioThread("Thread#1", randint(1,5))
 
-
 # Create a TCP/IP socket
 sock = socket.create_connection(('localhost', 10001))
-amount_received = 0;
+
 
 while True:
     data = sock.recv(1000)
     if data:
-        pippo=data.decode('utf-8')
-        pippo.replace('\r\n','')
-        pluto=pippo.split(';')
+        dataString=data.decode('utf-8').replace('\r\n','').split(';')
          # Avvio dei thread
-        if pluto[0]=='DARWIN_STATUS':
-            print(pluto[0],pluto[1],pluto[2])
+        if dataString[0]=='DARWIN_STATUS':
+            print(dataString[0],dataString[1],dataString[2])
             thread1.start()
-        if pluto[0]=='ANAG':
-            dollari=str(float(pluto[5])*1.21)
-            print(pluto[2],'   Titolo =',pluto[1],'   Valore EUR',pluto[5], 'Valore USD',dollari)
+        if dataString[0]=='ANAG':
+            dollari=str(float(dataString[5])*1.21)
+            print(dataString[2],'   Titolo =',dataString[1],'   Valore EUR',dataString[5], 'Valore USD',dollari)
 # Join
 thread1.join()
 
