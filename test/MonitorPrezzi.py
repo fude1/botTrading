@@ -78,9 +78,9 @@ if __name__ == "__main__":
  
    #print("Extract 1 hour candles")
    #print("Extract TSLA pricesfor last 5 years")
-  client_socket.send('SUBPRZALL SFER\r\n'.encode())
+  #client_socket.send('SUBPRZALL SFER\r\n'.encode())
   while True:
-   # client_socket.send('SUB SFER\r\n'.encode())
+    client_socket.send('SUB SFER\r\n'.encode())
    # client_socket.sendall('UNS SFER\r\n'.encode())
     time.sleep( 60 )
     
