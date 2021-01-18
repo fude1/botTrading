@@ -15,8 +15,8 @@ class IlMioThread (threading.Thread):
    def run(self):
       time.sleep(5)
       while True:
-        sock.sendall('SUB TSLA\r\n'.encode())
-        sock.sendall('UNS TSLA\r\n'.encode())
+        sock.sendall('SUBPRZ SFER\r\n'.encode())
+        sock.sendall('UNS SFER\r\n'.encode())
 
 # Creazione dei thread
 thread1 = IlMioThread("Thread#1", randint(1,5))
