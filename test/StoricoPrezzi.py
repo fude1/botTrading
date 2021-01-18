@@ -16,7 +16,7 @@ def worker(socket, stopper, rx_queue):
   data = client_socket.recv(512)
 
   print(data.decode('utf-8').replace('\r\n','\r'))
-  f = open("book.txt", 'a')
+  f = open("storico.txt", 'a')
   pippo=data.decode('utf-8').replace('\r\n','\r')
 
   f.write(pippo)
@@ -70,7 +70,7 @@ if __name__ == "__main__":
   stopper = threading.Event() # create a Thread Safe Event
 
   client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-  client_socket.connect(('localhost', 10001)) # connect to HISTORICAL DATA socket
+  client_socket.connect(('localhost', 10003)) # connect to HISTORICAL DATA socket
 
   t = threading.Thread(target=worker, args=(client_socket, stopper, rx_queue ) )
   t.start()
@@ -78,7 +78,7 @@ if __name__ == "__main__":
  
    #print("Extract 1 hour candles")
    #print("Extract TSLA pricesfor last 5 years")
-  client_socket.send('SUBPRZALL SFER\r\n'.encode())
+  client_socket.send('CANDLE MSE 1250 86400\r\n'.encode())
   while True:
    # client_socket.send('SUB SFER\r\n'.encode())
    # client_socket.sendall('UNS SFER\r\n'.encode())

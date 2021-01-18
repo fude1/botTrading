@@ -1,0 +1,1 @@
+DARWIN_STATUS;CONN_OK;TRUE;Release  2.0.0 build 05/01/2021 15:10:00 more info at http://app1.directatrading.com/trading-api-directa/index.htmlH
