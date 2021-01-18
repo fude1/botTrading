@@ -11,7 +11,7 @@ def worker(socket, stopper, rx_queue):
  # while not rx_queue.empty():
   # message = rx_queue.get()
  # f.write(message.decode('utf-8'))
-
+pippo=1
  while True:
   data = client_socket.recv(512)
 
